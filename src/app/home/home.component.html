@@ -1,5 +1,63 @@
-<h3>Angular4-Forms</h3>
-<form>
-    <input type="text" placeholder="name">
-    <button type="submit">Submit</button>
+<div class="continer">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#">Angular2 Forms</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<form #form="ngForm" novalidate>
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text"  placeholder="firstname" class="form-control" name="firstname" [ngModel]="model.firstName"
+        (ngModelChange)="model.firstName=$event">
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text"  placeholder="lastname" class="form-control" name="lastName" [(ngModel)]="model.lastName">
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="is-full-time"  [(ngModel)]="model.isFullTime">Full Time
+        </label>
+    </div>
+    <label>Gender</label>
+    <div class="radio">
+        <label>
+            <input type="radio" name="gender" value="male" [(ngModel)]="model.gender">Male
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="gender" value="female" [(ngModel)]="model.gender">Female
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Primary Language</label>
+        <select class="form-control" name="primaryLanguage" [(ngModel)]="model.primaryLanguage">
+            <option *ngFor="let lang of languages">
+                {{ lang }}
+            </option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
 </form>
+Model: {{model | json}}
+<br>
+Angular4: {{form.value | json}}
+<!--{{form.pristine}}-->
+</div>

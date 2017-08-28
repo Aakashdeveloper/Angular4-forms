@@ -43,11 +43,6 @@
     "webpack-dev-server": "2.4.2",
     "webpack-merge": "^4.1.0"
   },
-  "keywords": [
-    "Angular2"
-  ],
-  "repository": {
-  },
-  "bugs": {
-      },
-  }
+  "repository": {}
+}
+
