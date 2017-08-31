@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="#">Angular2 Forms</a>
+      <a class="navbar-brand" href="#">Angular4 Forms</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -23,13 +23,15 @@
 <form #form="ngForm" novalidate>
     <div class="form-group">
         <label>First Name</label>
-        <input type="text"  placeholder="firstname" class="form-control" name="firstname" [ngModel]="model.firstName"
+        <input #firstname type="text"  placeholder="firstname" class="form-control" name="firstname" [ngModel]="model.firstName"
         (ngModelChange)="model.firstName=$event">
     </div>
+     <h4>{{firstname.className}}</h4>
     <div class="form-group">
         <label>Last Name</label>
         <input type="text"  placeholder="lastname" class="form-control" name="lastName" [(ngModel)]="model.lastName">
     </div>
+   
     <div class="checkbox">
         <label>
             <input type="checkbox" name="is-full-time"  [(ngModel)]="model.isFullTime">Full Time
