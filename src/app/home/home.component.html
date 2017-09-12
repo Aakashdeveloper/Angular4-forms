@@ -21,18 +21,33 @@
   </div>
 </nav>
 <form #form="ngForm" novalidate>
-    <div class="form-group">
-        <label>First Name</label>
-        <input #firstname type="text"  placeholder="firstname" class="form-control" name="firstname" [ngModel]="model.firstName"
-        (ngModelChange)="model.firstName=$event">
+    <div class="form-group " [class.has-error]="firstName.invalid">
+        <label class="control-label">First Name</label>
+        <input #firstName="ngModel" type="text" required placeholder="firstname" class="form-control" 
+        name="firstName" [(ngModel)]="model.firstName">
+        <div *ngIf="firstName.invalid" class="alert alert-danger">
+            FirstName is required
+        </div>
     </div>
-     <h4>{{firstname.className}}</h4>
-    <div class="form-group">
+     <h4>{{firstName.invalid}}</h4>
+    <div class="form-group" [class.has-error]="lastName.invalid">
         <label>Last Name</label>
-        <input type="text"  placeholder="lastname" class="form-control" name="lastName" [(ngModel)]="model.lastName">
+        <input  #lastName="ngModel" minlength=3 type="text"  placeholder="lastname" class="form-control" 
+        name="lastName" [(ngModel)]="model.lastName">
+         <div *ngIf="lastName.invalid" class="alert alert-danger">
+            Last name should be more than 3 letter
+        </div>  
+    </div>
+    <div class="form-group" [class.has-error]="phoneNumber.invalid">
+        <label>Phone Number</label>
+        <input  #phoneNumber="ngModel" pattern="[0-9]{10}" type="text"  placeholder="phoneNumber" class="form-control" 
+        name="phoneNumber" [(ngModel)]="model.phoneNumber">
+         <div *ngIf="phoneNumber.invalid" class="alert alert-danger">
+            It should only be number
+        </div>  
     </div>
    
-    <div class="checkbox">
+   <!-- <div class="checkbox">
         <label>
             <input type="checkbox" name="is-full-time"  [(ngModel)]="model.isFullTime">Full Time
         </label>
@@ -47,16 +62,17 @@
         <label>
             <input type="radio" name="gender" value="female" [(ngModel)]="model.gender">Female
         </label>
-    </div>
-    <div class="form-group">
-        <label>Primary Language</label>
-        <select class="form-control" name="primaryLanguage" [(ngModel)]="model.primaryLanguage">
+    </div>-->
+    <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
+        <label class="control-label">Primary Language</label>
+        <select (blur)="validatePrimaryLanguage($event)" class="form-control" name="primaryLanguage" [(ngModel)]="model.primaryLanguage">
+            <option value="default">Select a languages...</option>
             <option *ngFor="let lang of languages">
                 {{ lang }}
             </option>
         </select>
     </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
 </form>
 Model: {{model | json}}
 <br>
