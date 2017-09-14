@@ -20,7 +20,7 @@
     </div>
   </div>
 </nav>
-<form #form="ngForm" novalidate>
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
     <div class="form-group " [class.has-error]="firstName.invalid">
         <label class="control-label">First Name</label>
         <input #firstName="ngModel" type="text" required placeholder="firstname" class="form-control" 
